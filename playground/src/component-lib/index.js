@@ -41,6 +41,8 @@ var InputSpinner = /** @class */ (function (_super) {
         var _this = _super.call(this, props) || this;
         _this.realMatch = function (value) { return value && value.match(/-?\d+(\.(\d+)?)?/) && value.match(/-?\d+(\.(\d+)?)?/)[0] === value.match(/-?\d+(\.(\d+)?)?/).input; };
         _this.intMatch = function (value) { return value && value.match(/-?\d+/) && value.match(/-?\d+/)[0] === value.match(/-?\d+/).input; };
+        if (!_this.props.type)
+            throw new Error("Bootstrap-input-number-spinner prop type is required");
         var spinnerStep = _this.getSpinnerStep(_this.props.step);
         _this.state = {
             min: _this.parseNum(_this.props.min),
@@ -238,10 +240,6 @@ var InputSpinner = /** @class */ (function (_super) {
         return numSplit.length > 1 ? numSplit[1].length : 0;
     };
     InputSpinner.prototype.getType = function () {
-        this.props.type;
-        if (this.props.type != null) {
-            this.props.type;
-        }
         return String(this.props.type).toLowerCase();
     };
     InputSpinner.prototype.typeDecimal = function () {

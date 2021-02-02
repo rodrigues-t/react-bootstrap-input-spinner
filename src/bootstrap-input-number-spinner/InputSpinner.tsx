@@ -18,6 +18,8 @@ class InputSpinner extends Component<InputSpinnerProps, InputSpinnerState> {
 
 	constructor(props: InputSpinnerProps) {
 		super(props);
+		if(!this.props.type) throw new Error("Bootstrap-input-number-spinner prop type is required");
+		
 		let spinnerStep = this.getSpinnerStep(this.props.step);
 		this.state = {
 			min: this.parseNum(this.props.min),
@@ -220,11 +222,7 @@ class InputSpinner extends Component<InputSpinnerProps, InputSpinnerState> {
 		return numSplit.length > 1 ? numSplit[1].length : 0;
 	}
 
-	getType() {
-		let type = this.props.type;
-		if (this.props.type != null) {
-			type = this.props.type;
-		}
+	getType() : string {
 		return String(this.props.type).toLowerCase();
 	}
 	
