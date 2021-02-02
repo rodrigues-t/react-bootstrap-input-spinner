@@ -1,0 +1,109 @@
+import { Component } from "react";
+/**
+ * Input Spinner
+ * @author Thiago Rodrigues based on InputSpinner from Marco Cesarato <cesarato.developer@gmail.com>
+ */
+declare class InputSpinner extends Component<InputSpinnerProps, InputSpinnerState> {
+    static defaultProps: {
+        disabled: boolean;
+        editable: boolean;
+        arrows: boolean;
+        variant: string;
+    };
+    constructor(props: InputSpinnerProps);
+    /**
+     * Component did update
+     * @param prevProps
+     * @returns {*}
+     */
+    componentDidUpdate(prevProps: InputSpinnerProps): void;
+    onChange(num: any, event: any): void;
+    emitChange(value: number): void;
+    onBlur(): void;
+    realMatch: (value: any) => any;
+    intMatch: (value: any) => any;
+    parseNum(num: any): any;
+    getValue(num: any): string;
+    countDecimals(value: number): number;
+    countDecimalsFromString(value: string): number;
+    getType(): string;
+    /**
+     * Detect if type is decimal
+     * @returns {boolean}
+     */
+    typeDecimal(): boolean;
+    /**
+     * Increase
+     */
+    increase(): void;
+    decrease(): void;
+    /**
+     * Max is reached
+     * @param num
+     * @returns {boolean}
+     */
+    maxReached(num?: number | null): boolean;
+    /**
+     * Min is reached
+     * @param num
+     * @returns {boolean}
+     */
+    minReached(num?: number | null): boolean;
+    /**
+     * Is object empty
+     * @param obj
+     * @returns {boolean}
+     */
+    isObjectEmpty(obj: any): boolean;
+    /**
+     * Is text input editable
+     * @returns {boolean|Boolean}
+     */
+    isEditable(): boolean | undefined;
+    /**
+     * Is left button disabled
+     * @returns {Boolean}
+     * @private
+     */
+    _isDisabledButtonLeft(): boolean | undefined;
+    /**
+     * Is right button disabled
+     * @returns {Boolean}
+     * @private
+     */
+    _isDisabledButtonRight(): boolean | undefined;
+    _getKeyboardType(): string;
+    _renderLeftButtonElement(): string;
+    _renderRightButtonElement(): string;
+    _renderLeftButton(): JSX.Element;
+    _renderRightButton(): JSX.Element;
+    render(): JSX.Element;
+}
+declare type InputSpinnerState = {
+    min: number;
+    max: number;
+    value: number;
+    step: number;
+    buttonPress: any | null;
+    lastEmittedValue: any | undefined;
+};
+declare type InputSpinnerProps = {
+    type: string;
+    min: number;
+    max: number;
+    value: number;
+    step: number;
+    precision: number;
+    onChange: any;
+    onMax?: any;
+    onMin?: any;
+    onIncrease?: any;
+    onDecrease?: any;
+    prepend?: any;
+    append?: any;
+    disabled?: boolean;
+    editable?: boolean;
+    arrows?: boolean;
+    variant?: string;
+};
+export { InputSpinnerProps, InputSpinner };
