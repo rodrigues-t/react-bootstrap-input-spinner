@@ -11,16 +11,25 @@ class InputSpinner extends Component<InputSpinnerProps, InputSpinnerState> {
 		disabled: false,
 		editable: true,
 		arrows: false,
+		min: 0,
+		max: Number.MAX_SAFE_INTEGER,
 		variant: 'primary'
 	};
 
 	constructor(props: InputSpinnerProps) {
 		super(props);
-
 		let spinnerStep = this.parseNum(this.props.step);
 		if (!this.typeDecimal() && spinnerStep < 1) {
 			spinnerStep = 1;
 		}
+		if (spinnerStep == '') {
+			if (this.typeDecimal()) {
+				spinnerStep = 0.1;
+			} else {
+				spinnerStep = 1;
+			}
+		}
+		console.log(this.props.step, spinnerStep);
 		this.state = {
 			min: this.parseNum(this.props.min),
 			max: this.parseNum(this.props.max),
@@ -156,16 +165,17 @@ class InputSpinner extends Component<InputSpinnerProps, InputSpinnerState> {
 	intMatch = (value: any) => value && value.match(/-?\d+/) && value.match(/-?\d+/)[0] === value.match(/-?\d+/).input;
 
 	parseNum(num: any) {
-
 		if (this.typeDecimal()) {
 			if (num === '.')
 				return '0.';
 			if (this.realMatch("" + num)) {
 				let numSplit = ("" + num).split(".");
-				//let dec =  numSplit.length > 1 ? numSplit[1].length : 0; 
-				if ((numSplit.length > 1 && numSplit[1].length > 0 && numSplit[1].endsWith('0')) ||
-					(numSplit.length > 1 && numSplit[1].length === 0))
+				if (
+					(numSplit.length > 1 && numSplit[1].length > 0 && numSplit[1].endsWith('0')) ||
+					(numSplit.length > 1 && numSplit[1].length === 0)
+				) {
 					return num;
+				}
 				num = parseFloat(num);
 			} else {
 				num = parseFloat(num);
@@ -176,7 +186,6 @@ class InputSpinner extends Component<InputSpinnerProps, InputSpinnerState> {
 		if (isNaN(num)) {
 			num = '';
 		}
-		//this.roundNum(num);
 		return num;
 	}
 
@@ -341,7 +350,7 @@ class InputSpinner extends Component<InputSpinnerProps, InputSpinnerState> {
 		}
 		return keyboardType;
 	}
-				
+
 	_renderLeftButtonElement(): string {
 		const text =
 			this.props.arrows !== false

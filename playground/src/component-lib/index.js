@@ -1,6 +1,5 @@
 /* eslint-disable */
 import React, { Component } from 'react';
-import styled from 'styled-components';
 import { Button, InputGroup, Form } from 'react-bootstrap';
 
 /*! *****************************************************************************
@@ -32,18 +31,6 @@ function __extends(d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 }
 
-function __makeTemplateObject(cooked, raw) {
-    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
-    return cooked;
-}
-
-var StyledMyComponent = styled.div(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  color: ", ";\n"], ["\n  color: ", ";\n"])), function (p) { return p.color || 'pink'; });
-var MyComponent = function (_a) {
-    var text = _a.text, color = _a.color;
-    return (React.createElement(StyledMyComponent, { color: color }, text));
-};
-var templateObject_1;
-
 /**
  * Input Spinner
  * @author Thiago Rodrigues based on InputSpinner from Marco Cesarato <cesarato.developer@gmail.com>
@@ -58,6 +45,15 @@ var InputSpinner = /** @class */ (function (_super) {
         if (!_this.typeDecimal() && spinnerStep < 1) {
             spinnerStep = 1;
         }
+        if (spinnerStep == '') {
+            if (_this.typeDecimal()) {
+                spinnerStep = 0.1;
+            }
+            else {
+                spinnerStep = 1;
+            }
+        }
+        console.log(_this.props.step, spinnerStep);
         _this.state = {
             min: _this.parseNum(_this.props.min),
             max: _this.parseNum(_this.props.max),
@@ -194,10 +190,10 @@ var InputSpinner = /** @class */ (function (_super) {
                 return '0.';
             if (this.realMatch("" + num)) {
                 var numSplit = ("" + num).split(".");
-                //let dec =  numSplit.length > 1 ? numSplit[1].length : 0; 
                 if ((numSplit.length > 1 && numSplit[1].length > 0 && numSplit[1].endsWith('0')) ||
-                    (numSplit.length > 1 && numSplit[1].length === 0))
+                    (numSplit.length > 1 && numSplit[1].length === 0)) {
                     return num;
+                }
                 num = parseFloat(num);
             }
             else {
@@ -210,7 +206,6 @@ var InputSpinner = /** @class */ (function (_super) {
         if (isNaN(num)) {
             num = '';
         }
-        //this.roundNum(num);
         return num;
     };
     InputSpinner.prototype.getValue = function (num) {
@@ -397,9 +392,11 @@ var InputSpinner = /** @class */ (function (_super) {
         disabled: false,
         editable: true,
         arrows: false,
+        min: 0,
+        max: Number.MAX_SAFE_INTEGER,
         variant: 'primary'
     };
     return InputSpinner;
 }(Component));
 
-export { InputSpinner, MyComponent };
+export default InputSpinner;

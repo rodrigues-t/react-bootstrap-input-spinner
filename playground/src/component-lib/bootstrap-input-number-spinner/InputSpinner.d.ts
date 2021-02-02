@@ -8,6 +8,8 @@ declare class InputSpinner extends Component<InputSpinnerProps, InputSpinnerStat
         disabled: boolean;
         editable: boolean;
         arrows: boolean;
+        min: number;
+        max: number;
         variant: string;
     };
     constructor(props: InputSpinnerProps);

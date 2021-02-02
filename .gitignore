@@ -5,6 +5,7 @@
 
 # testing
 /coverage
+/playground/src/component-lib
 
 # production
 /build
