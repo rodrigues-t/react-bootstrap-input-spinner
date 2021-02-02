@@ -53,7 +53,6 @@ var InputSpinner = /** @class */ (function (_super) {
                 spinnerStep = 1;
             }
         }
-        console.log(_this.props.step, spinnerStep);
         _this.state = {
             min: _this.parseNum(_this.props.min),
             max: _this.parseNum(_this.props.max),
@@ -64,11 +63,6 @@ var InputSpinner = /** @class */ (function (_super) {
         };
         return _this;
     }
-    /**
-     * Component did update
-     * @param prevProps
-     * @returns {*}
-     */
     InputSpinner.prototype.componentDidUpdate = function (prevProps) {
         // Parse Min
         if (this.props.min !== prevProps.min) {
@@ -249,10 +243,6 @@ var InputSpinner = /** @class */ (function (_super) {
         }
         return String(type).toLowerCase();
     };
-    /**
-     * Detect if type is decimal
-     * @returns {boolean}
-     */
     InputSpinner.prototype.typeDecimal = function () {
         var type = this.getType();
         return (type === "float" ||
@@ -290,11 +280,6 @@ var InputSpinner = /** @class */ (function (_super) {
         }
         this.onChange(num, 'dec');
     };
-    /**
-     * Max is reached
-     * @param num
-     * @returns {boolean}
-     */
     InputSpinner.prototype.maxReached = function (num) {
         if (num === void 0) { num = null; }
         if (num == null) {
@@ -302,11 +287,6 @@ var InputSpinner = /** @class */ (function (_super) {
         }
         return num >= this.state.max;
     };
-    /**
-     * Min is reached
-     * @param num
-     * @returns {boolean}
-     */
     InputSpinner.prototype.minReached = function (num) {
         if (num === void 0) { num = null; }
         if (num == null) {

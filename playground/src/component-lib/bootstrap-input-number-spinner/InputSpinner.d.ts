@@ -13,11 +13,6 @@ declare class InputSpinner extends Component<InputSpinnerProps, InputSpinnerStat
         variant: string;
     };
     constructor(props: InputSpinnerProps);
-    /**
-     * Component did update
-     * @param prevProps
-     * @returns {*}
-     */
     componentDidUpdate(prevProps: InputSpinnerProps): void;
     onChange(num: any, event: any): void;
     emitChange(value: number): void;
@@ -29,27 +24,13 @@ declare class InputSpinner extends Component<InputSpinnerProps, InputSpinnerStat
     countDecimals(value: number): number;
     countDecimalsFromString(value: string): number;
     getType(): string;
-    /**
-     * Detect if type is decimal
-     * @returns {boolean}
-     */
     typeDecimal(): boolean;
     /**
      * Increase
      */
     increase(): void;
     decrease(): void;
-    /**
-     * Max is reached
-     * @param num
-     * @returns {boolean}
-     */
     maxReached(num?: number | null): boolean;
-    /**
-     * Min is reached
-     * @param num
-     * @returns {boolean}
-     */
     minReached(num?: number | null): boolean;
     /**
      * Is object empty

@@ -29,7 +29,6 @@ class InputSpinner extends Component<InputSpinnerProps, InputSpinnerState> {
 				spinnerStep = 1;
 			}
 		}
-		console.log(this.props.step, spinnerStep);
 		this.state = {
 			min: this.parseNum(this.props.min),
 			max: this.parseNum(this.props.max),
@@ -39,12 +38,7 @@ class InputSpinner extends Component<InputSpinnerProps, InputSpinnerState> {
 			lastEmittedValue: undefined,
 		};
 	}
-
-	/**
-	 * Component did update
-	 * @param prevProps
-	 * @returns {*}
-	 */
+	
 	componentDidUpdate(prevProps: InputSpinnerProps) {
 		// Parse Min
 		if (this.props.min !== prevProps.min) {
@@ -231,12 +225,8 @@ class InputSpinner extends Component<InputSpinnerProps, InputSpinnerState> {
 		}
 		return String(type).toLowerCase();
 	}
-
-	/**
-	 * Detect if type is decimal
-	 * @returns {boolean}
-	 */
-	typeDecimal() {
+	
+	typeDecimal(): boolean {
 		let type = this.getType();
 		return (
 			type === "float" ||
@@ -278,25 +268,15 @@ class InputSpinner extends Component<InputSpinnerProps, InputSpinnerState> {
 		}
 		this.onChange(num, 'dec');
 	}
-
-	/**
-	 * Max is reached
-	 * @param num
-	 * @returns {boolean}
-	 */
-	maxReached(num: number | null = null) {
+	
+	maxReached(num: number | null = null): boolean {
 		if (num == null) {
 			num = this.state.value;
 		}
 		return num >= this.state.max;
 	}
-
-	/**
-	 * Min is reached
-	 * @param num
-	 * @returns {boolean}
-	 */
-	minReached(num: number | null = null) {
+	
+	minReached(num: number | null = null): boolean {
 		if (num == null) {
 			num = this.state.value;
 		}
