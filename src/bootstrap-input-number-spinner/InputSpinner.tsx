@@ -18,8 +18,8 @@ class InputSpinner extends Component<InputSpinnerProps, InputSpinnerState> {
 
 	constructor(props: InputSpinnerProps) {
 		super(props);
-		if(!this.props.type) throw new Error("Bootstrap-input-number-spinner prop type is required");
-		
+		if (!this.props.type) throw new Error("Bootstrap-input-number-spinner prop type is required");
+
 		let spinnerStep = this.getSpinnerStep(this.props.step);
 		this.state = {
 			min: this.parseNum(this.props.min),
@@ -45,7 +45,7 @@ class InputSpinner extends Component<InputSpinnerProps, InputSpinnerState> {
 		}
 		return spinnerStep;
 	}
-	
+
 	componentDidUpdate(prevProps: InputSpinnerProps) {
 		// Parse Min
 		if (this.props.min !== prevProps.min) {
@@ -222,10 +222,10 @@ class InputSpinner extends Component<InputSpinnerProps, InputSpinnerState> {
 		return numSplit.length > 1 ? numSplit[1].length : 0;
 	}
 
-	getType() : string {
+	getType(): string {
 		return String(this.props.type).toLowerCase();
 	}
-	
+
 	typeDecimal(): boolean {
 		let type = this.getType();
 		return (
@@ -268,14 +268,14 @@ class InputSpinner extends Component<InputSpinnerProps, InputSpinnerState> {
 		}
 		this.onChange(num, 'dec');
 	}
-	
+
 	maxReached(num: number | null = null): boolean {
 		if (num == null) {
 			num = this.state.value;
 		}
 		return num >= this.state.max;
 	}
-	
+
 	minReached(num: number | null = null): boolean {
 		if (num == null) {
 			num = this.state.value;
@@ -299,36 +299,13 @@ class InputSpinner extends Component<InputSpinnerProps, InputSpinnerState> {
 	isEditable() {
 		return !this.props.disabled && this.props.editable;
 	}
-
-	/**
-	 * Is left button disabled
-	 * @returns {Boolean}
-	 * @private
-	 */
-	_isDisabledButtonLeft() {
-		// return (this.props.disabled || this.props.buttonLeftDisabled);
-		return this.props.disabled;
+	
+	_isDisabledButtonLeft(): boolean {
+		return this.props.disabled || this.minReached(this.parseNum(this.state.value));
 	}
-
-	/**
-	 * Is right button disabled
-	 * @returns {Boolean}
-	 * @private
-	 */
+	
 	_isDisabledButtonRight() {
-		//return (this.props.disabled || this.props.buttonRightDisabled);
-		return this.props.disabled;
-	}
-
-	_getKeyboardType() {
-		// Keyboard type
-		let keyboardType = "numeric";
-		if (this.typeDecimal()) {
-			keyboardType = "decimal-pad";
-		} else {
-			keyboardType = "number-pad";
-		}
-		return keyboardType;
+		return this.props.disabled || this.maxReached(this.parseNum(this.state.value));
 	}
 
 	_renderLeftButtonElement(): string {
@@ -336,7 +313,6 @@ class InputSpinner extends Component<InputSpinnerProps, InputSpinnerState> {
 			this.props.arrows !== false
 				? "<"
 				: "-";
-
 		return text;
 	}
 

@@ -308,34 +308,11 @@ var InputSpinner = /** @class */ (function (_super) {
     InputSpinner.prototype.isEditable = function () {
         return !this.props.disabled && this.props.editable;
     };
-    /**
-     * Is left button disabled
-     * @returns {Boolean}
-     * @private
-     */
     InputSpinner.prototype._isDisabledButtonLeft = function () {
-        // return (this.props.disabled || this.props.buttonLeftDisabled);
-        return this.props.disabled;
+        return this.props.disabled || this.minReached(this.parseNum(this.state.value));
     };
-    /**
-     * Is right button disabled
-     * @returns {Boolean}
-     * @private
-     */
     InputSpinner.prototype._isDisabledButtonRight = function () {
-        //return (this.props.disabled || this.props.buttonRightDisabled);
-        return this.props.disabled;
-    };
-    InputSpinner.prototype._getKeyboardType = function () {
-        // Keyboard type
-        var keyboardType = "numeric";
-        if (this.typeDecimal()) {
-            keyboardType = "decimal-pad";
-        }
-        else {
-            keyboardType = "number-pad";
-        }
-        return keyboardType;
+        return this.props.disabled || this.maxReached(this.parseNum(this.state.value));
     };
     InputSpinner.prototype._renderLeftButtonElement = function () {
         var text = this.props.arrows !== false

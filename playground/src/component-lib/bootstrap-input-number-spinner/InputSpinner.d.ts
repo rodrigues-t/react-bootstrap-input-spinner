@@ -44,19 +44,8 @@ declare class InputSpinner extends Component<InputSpinnerProps, InputSpinnerStat
      * @returns {boolean|Boolean}
      */
     isEditable(): boolean | undefined;
-    /**
-     * Is left button disabled
-     * @returns {Boolean}
-     * @private
-     */
-    _isDisabledButtonLeft(): boolean | undefined;
-    /**
-     * Is right button disabled
-     * @returns {Boolean}
-     * @private
-     */
-    _isDisabledButtonRight(): boolean | undefined;
-    _getKeyboardType(): string;
+    _isDisabledButtonLeft(): boolean;
+    _isDisabledButtonRight(): boolean;
     _renderLeftButtonElement(): string;
     _renderRightButtonElement(): string;
     _renderLeftButton(): JSX.Element;
