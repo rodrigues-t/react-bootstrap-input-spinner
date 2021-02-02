@@ -14,13 +14,27 @@ It's possible there are some bugs once I probably didn't perform tests in all sc
 
 By the way, I recommend you go to Marco Cesarato repository and check out his well maintained and great work. 
 
-## Run
-Installing all dependencies:
+## Getting Started
+Make sure you have a recent version of Node.js installed in yout development environment.
+
+**Cloning Repository**
+```
+$ git clone https://github.com/rodrigues-t/bootstrap-input-number-spinner.git
+```
+
+**Installing all dependencies (library and playground)**
 ```
 $ npm run i-all
 ```
 
-Runinng playground for test:
+**Runinng for test:**
 ```
 $ npm run dev
 ```
+
+## Built With
+
+1. React
+2. React-Bootstrap
+3. Typescript
+4. Rollup
