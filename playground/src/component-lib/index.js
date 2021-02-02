@@ -41,18 +41,7 @@ var InputSpinner = /** @class */ (function (_super) {
         var _this = _super.call(this, props) || this;
         _this.realMatch = function (value) { return value && value.match(/-?\d+(\.(\d+)?)?/) && value.match(/-?\d+(\.(\d+)?)?/)[0] === value.match(/-?\d+(\.(\d+)?)?/).input; };
         _this.intMatch = function (value) { return value && value.match(/-?\d+/) && value.match(/-?\d+/)[0] === value.match(/-?\d+/).input; };
-        var spinnerStep = _this.parseNum(_this.props.step);
-        if (!_this.typeDecimal() && spinnerStep < 1) {
-            spinnerStep = 1;
-        }
-        if (spinnerStep == '') {
-            if (_this.typeDecimal()) {
-                spinnerStep = 0.1;
-            }
-            else {
-                spinnerStep = 1;
-            }
-        }
+        var spinnerStep = _this.getSpinnerStep(_this.props.step);
         _this.state = {
             min: _this.parseNum(_this.props.min),
             max: _this.parseNum(_this.props.max),
@@ -63,6 +52,21 @@ var InputSpinner = /** @class */ (function (_super) {
         };
         return _this;
     }
+    InputSpinner.prototype.getSpinnerStep = function (step) {
+        var spinnerStep = this.parseNum(step);
+        if (!this.typeDecimal() && spinnerStep < 1) {
+            spinnerStep = 1;
+        }
+        if (spinnerStep == '') {
+            if (this.typeDecimal()) {
+                spinnerStep = 0.1;
+            }
+            else {
+                spinnerStep = 1;
+            }
+        }
+        return spinnerStep;
+    };
     InputSpinner.prototype.componentDidUpdate = function (prevProps) {
         // Parse Min
         if (this.props.min !== prevProps.min) {
@@ -74,10 +78,7 @@ var InputSpinner = /** @class */ (function (_super) {
         }
         // Parse Step
         if (this.props.step !== prevProps.step) {
-            var spinnerStep = this.parseNum(this.props.step);
-            if (!this.typeDecimal() && spinnerStep < 1) {
-                spinnerStep = 1;
-            }
+            var spinnerStep = this.getSpinnerStep(this.props.step);
             this.setState({ step: spinnerStep });
         }
     };
@@ -237,11 +238,11 @@ var InputSpinner = /** @class */ (function (_super) {
         return numSplit.length > 1 ? numSplit[1].length : 0;
     };
     InputSpinner.prototype.getType = function () {
-        var type = this.props.type;
+        this.props.type;
         if (this.props.type != null) {
-            type = this.props.type;
+            this.props.type;
         }
-        return String(type).toLowerCase();
+        return String(this.props.type).toLowerCase();
     };
     InputSpinner.prototype.typeDecimal = function () {
         var type = this.getType();

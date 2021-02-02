@@ -18,7 +18,19 @@ class InputSpinner extends Component<InputSpinnerProps, InputSpinnerState> {
 
 	constructor(props: InputSpinnerProps) {
 		super(props);
-		let spinnerStep = this.parseNum(this.props.step);
+		let spinnerStep = this.getSpinnerStep(this.props.step);
+		this.state = {
+			min: this.parseNum(this.props.min),
+			max: this.parseNum(this.props.max),
+			value: this.parseNum(this.props.value),
+			step: spinnerStep,
+			buttonPress: null,
+			lastEmittedValue: undefined,
+		};
+	}
+
+	getSpinnerStep(step: number): number {
+		let spinnerStep = this.parseNum(step);
 		if (!this.typeDecimal() && spinnerStep < 1) {
 			spinnerStep = 1;
 		}
@@ -29,14 +41,7 @@ class InputSpinner extends Component<InputSpinnerProps, InputSpinnerState> {
 				spinnerStep = 1;
 			}
 		}
-		this.state = {
-			min: this.parseNum(this.props.min),
-			max: this.parseNum(this.props.max),
-			value: this.parseNum(this.props.value),
-			step: spinnerStep,
-			buttonPress: null,
-			lastEmittedValue: undefined,
-		};
+		return spinnerStep;
 	}
 	
 	componentDidUpdate(prevProps: InputSpinnerProps) {
@@ -50,10 +55,7 @@ class InputSpinner extends Component<InputSpinnerProps, InputSpinnerState> {
 		}
 		// Parse Step
 		if (this.props.step !== prevProps.step) {
-			let spinnerStep = this.parseNum(this.props.step);
-			if (!this.typeDecimal() && spinnerStep < 1) {
-				spinnerStep = 1;
-			}
+			let spinnerStep = this.getSpinnerStep(this.props.step);
 			this.setState({ step: spinnerStep });
 		}
 	}
@@ -223,7 +225,7 @@ class InputSpinner extends Component<InputSpinnerProps, InputSpinnerState> {
 		if (this.props.type != null) {
 			type = this.props.type;
 		}
-		return String(type).toLowerCase();
+		return String(this.props.type).toLowerCase();
 	}
 	
 	typeDecimal(): boolean {

@@ -13,6 +13,7 @@ declare class InputSpinner extends Component<InputSpinnerProps, InputSpinnerStat
         variant: string;
     };
     constructor(props: InputSpinnerProps);
+    getSpinnerStep(step: number): number;
     componentDidUpdate(prevProps: InputSpinnerProps): void;
     onChange(num: any, event: any): void;
     emitChange(value: number): void;
