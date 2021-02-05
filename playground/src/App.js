@@ -68,6 +68,7 @@ const App = () => {
               step={2}
               value={value3}
               size="lg"
+              arrows
               onChange={setValue3Callback}
             />
           </Col>

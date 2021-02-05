@@ -32,12 +32,12 @@ declare class InputSpinner extends Component<InputSpinnerProps, InputSpinnerStat
     maxReached(num?: number | null): boolean;
     minReached(num?: number | null): boolean;
     isEditable(): boolean | undefined;
-    _isDisabledButtonLeft(): boolean;
-    _isDisabledButtonRight(): boolean;
-    _renderLeftButtonElement(): string;
-    _renderRightButtonElement(): string;
-    _renderLeftButton(): JSX.Element;
-    _renderRightButton(): JSX.Element;
+    isDisabledButtonLeft(): boolean;
+    isDisabledButtonRight(): boolean;
+    renderLeftButtonElement(): string;
+    renderRightButtonElement(): string;
+    renderLeftButton(): JSX.Element;
+    renderRightButton(): JSX.Element;
     render(): JSX.Element;
 }
 declare type InputSpinnerState = {

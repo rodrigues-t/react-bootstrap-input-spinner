@@ -247,8 +247,9 @@ var InputSpinner = /** @class */ (function (_super) {
             type === "real");
     };
     InputSpinner.prototype.increase = function () {
-        if (this._isDisabledButtonRight())
+        if (this.isDisabledButtonRight()) {
             return;
+        }
         var num = this.parseNum(this.state.value) + this.parseNum(this.state.step);
         if (this.props.onIncrease) {
             var increased_num = num;
@@ -260,7 +261,7 @@ var InputSpinner = /** @class */ (function (_super) {
         this.onChange(num, 'inc');
     };
     InputSpinner.prototype.decrease = function () {
-        if (this._isDisabledButtonLeft()) {
+        if (this.isDisabledButtonLeft()) {
             return;
         }
         var num = this.parseNum(this.state.value) - this.parseNum(this.state.step);
@@ -287,47 +288,38 @@ var InputSpinner = /** @class */ (function (_super) {
         }
         return num <= this.state.min;
     };
-    // isObjectEmpty(obj: any): boolean {
-    // 	return Object.entries(obj).length === 0 && obj.constructor === Object;
-    // }
     InputSpinner.prototype.isEditable = function () {
         return !this.props.disabled && this.props.editable;
     };
-    InputSpinner.prototype._isDisabledButtonLeft = function () {
+    InputSpinner.prototype.isDisabledButtonLeft = function () {
         return this.props.disabled || this.minReached(this.parseNum(this.state.value));
     };
-    InputSpinner.prototype._isDisabledButtonRight = function () {
+    InputSpinner.prototype.isDisabledButtonRight = function () {
         return this.props.disabled || this.maxReached(this.parseNum(this.state.value));
     };
-    InputSpinner.prototype._renderLeftButtonElement = function () {
-        var text = this.props.arrows !== false
-            ? "<"
-            : "-";
-        return text;
+    InputSpinner.prototype.renderLeftButtonElement = function () {
+        return this.props.arrows === true ? "<" : "-";
     };
-    InputSpinner.prototype._renderRightButtonElement = function () {
-        var text = this.props.arrows !== false
-            ? ">"
-            : "+";
-        return text;
+    InputSpinner.prototype.renderRightButtonElement = function () {
+        return this.props.arrows === true ? ">" : "+";
     };
-    InputSpinner.prototype._renderLeftButton = function () {
+    InputSpinner.prototype.renderLeftButton = function () {
         var _this = this;
-        return (React.createElement(Button, { id: "input-spinner-left-button", variant: this.props.variant, disabled: this._isDisabledButtonLeft(), onClick: function () { return _this.decrease(); } }, this._renderLeftButtonElement()));
+        return (React.createElement(Button, { id: "input-spinner-left-button", variant: this.props.variant, disabled: this.isDisabledButtonLeft(), onClick: function () { return _this.decrease(); } }, this.renderLeftButtonElement()));
     };
-    InputSpinner.prototype._renderRightButton = function () {
+    InputSpinner.prototype.renderRightButton = function () {
         var _this = this;
-        return (React.createElement(Button, { id: "input-spinner-right-button", variant: this.props.variant, disabled: this._isDisabledButtonRight(), onClick: function () { return _this.increase(); } }, this._renderRightButtonElement()));
+        return (React.createElement(Button, { id: "input-spinner-right-button", variant: this.props.variant, disabled: this.isDisabledButtonRight(), onClick: function () { return _this.increase(); } }, this.renderRightButtonElement()));
     };
     InputSpinner.prototype.render = function () {
         var _this = this;
         return (React.createElement(InputGroup, { size: this.props.size },
-            React.createElement(InputGroup.Prepend, null, this._renderLeftButton()),
+            React.createElement(InputGroup.Prepend, null, this.renderLeftButton()),
             this.props.prepend,
-            React.createElement(Form.Control, { value: this.getValue(undefined), readOnly: !this.isEditable(), onChange: function (event) { return _this.onChange(event.target.value, undefined); }, onBlur: this.onBlur.bind(this) }),
+            React.createElement(Form.Control, { id: "input-spinner-input", value: this.getValue(undefined), readOnly: !this.isEditable(), onChange: function (event) { return _this.onChange(event.target.value, undefined); }, onBlur: this.onBlur.bind(this) }),
             this.props.children,
             this.props.append,
-            React.createElement(InputGroup.Append, null, this._renderRightButton())));
+            React.createElement(InputGroup.Append, null, this.renderRightButton())));
     };
     InputSpinner.defaultProps = {
         disabled: false,

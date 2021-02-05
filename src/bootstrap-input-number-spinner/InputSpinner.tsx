@@ -233,11 +233,12 @@ class InputSpinner extends Component<InputSpinnerProps, InputSpinnerState> {
 			type === "real"
 		);
 	}
-	
+
 	increase(): void {
-		if (this._isDisabledButtonRight()) return;
-		let num =
-			this.parseNum(this.state.value) + this.parseNum(this.state.step);
+		if (this.isDisabledButtonRight()) {
+			return;
+		}
+		let num = this.parseNum(this.state.value) + this.parseNum(this.state.step);
 		if (this.props.onIncrease) {
 			let increased_num = num;
 			if (this.maxReached(num)) {
@@ -250,7 +251,7 @@ class InputSpinner extends Component<InputSpinnerProps, InputSpinnerState> {
 	}
 
 	decrease(): void {
-		if (this._isDisabledButtonLeft()) {
+		if (this.isDisabledButtonLeft()) {
 			return;
 		}
 		let num = this.parseNum(this.state.value) - this.parseNum(this.state.step);
@@ -277,60 +278,47 @@ class InputSpinner extends Component<InputSpinnerProps, InputSpinnerState> {
 		}
 		return num <= this.state.min;
 	}
-	
-	// isObjectEmpty(obj: any): boolean {
-	// 	return Object.entries(obj).length === 0 && obj.constructor === Object;
-	// }
-	
+
 	isEditable() {
 		return !this.props.disabled && this.props.editable;
 	}
-	
-	_isDisabledButtonLeft(): boolean {
+
+	isDisabledButtonLeft(): boolean {
 		return this.props.disabled || this.minReached(this.parseNum(this.state.value));
 	}
-	
-	_isDisabledButtonRight() {
+
+	isDisabledButtonRight() {
 		return this.props.disabled || this.maxReached(this.parseNum(this.state.value));
 	}
 
-	_renderLeftButtonElement(): string {
-		const text =
-			this.props.arrows !== false
-				? "<"
-				: "-";
-		return text;
+	renderLeftButtonElement(): string {
+		return this.props.arrows === true ? "<" : "-";
 	}
 
-	_renderRightButtonElement(): string {
-		const text =
-			this.props.arrows !== false
-				? ">"
-
-				: "+";
-		return text;
+	renderRightButtonElement(): string {
+		return this.props.arrows === true ? ">" : "+";
 	}
 
-	_renderLeftButton() {
+	renderLeftButton() {
 		return (
 			<Button
 				id="input-spinner-left-button"
 				variant={this.props.variant}
-				disabled={this._isDisabledButtonLeft()}
+				disabled={this.isDisabledButtonLeft()}
 				onClick={() => this.decrease()}>
-				{this._renderLeftButtonElement()}
+				{this.renderLeftButtonElement()}
 			</Button>
 		);
 	}
 
-	_renderRightButton() {
+	renderRightButton() {
 		return (
 			<Button
 				id="input-spinner-right-button"
 				variant={this.props.variant}
-				disabled={this._isDisabledButtonRight()}
+				disabled={this.isDisabledButtonRight()}
 				onClick={() => this.increase()}>
-				{this._renderRightButtonElement()}
+				{this.renderRightButtonElement()}
 			</Button>
 		);
 	}
@@ -339,10 +327,11 @@ class InputSpinner extends Component<InputSpinnerProps, InputSpinnerState> {
 		return (
 			<InputGroup size={this.props.size}>
 				<InputGroup.Prepend>
-					{this._renderLeftButton()}
+					{this.renderLeftButton()}
 				</InputGroup.Prepend>
 				{this.props.prepend}
 				<Form.Control
+					id="input-spinner-input"
 					value={this.getValue(undefined)}
 					readOnly={!this.isEditable()}
 					onChange={event => this.onChange(event.target.value, undefined)}
@@ -351,7 +340,7 @@ class InputSpinner extends Component<InputSpinnerProps, InputSpinnerState> {
 				{this.props.children}
 				{this.props.append}
 				<InputGroup.Append>
-					{this._renderRightButton()}
+					{this.renderRightButton()}
 				</InputGroup.Append>
 			</InputGroup>
 		);
