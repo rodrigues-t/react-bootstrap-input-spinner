@@ -56,11 +56,11 @@ var InputSpinner = /** @class */ (function (_super) {
     }
     InputSpinner.prototype.getSpinnerStep = function (step) {
         var spinnerStep = this.parseNum(step);
-        if (!this.typeDecimal() && spinnerStep < 1) {
+        if (!this.isTypeDecimal() && spinnerStep < 1) {
             spinnerStep = 1;
         }
         if (spinnerStep == '') {
-            if (this.typeDecimal()) {
+            if (this.isTypeDecimal()) {
                 spinnerStep = 0.1;
             }
             else {
@@ -88,7 +88,7 @@ var InputSpinner = /** @class */ (function (_super) {
             event = 'none';
         this.setState({ value: num });
         var currentValue = this.getValue(num);
-        if (this.typeDecimal()) {
+        if (this.isTypeDecimal()) {
             if (this.realMatch("" + currentValue)) {
                 if (this.state.min > 0 && Number(currentValue) === 0 && (event === 'none'))
                     return;
@@ -161,7 +161,7 @@ var InputSpinner = /** @class */ (function (_super) {
     };
     InputSpinner.prototype.onBlur = function () {
         var currentValue = this.getValue(undefined);
-        if (this.typeDecimal()) {
+        if (this.isTypeDecimal()) {
             if (this.realMatch("" + currentValue)) {
                 this.onChange(currentValue, 'blur');
             }
@@ -179,7 +179,7 @@ var InputSpinner = /** @class */ (function (_super) {
         }
     };
     InputSpinner.prototype.parseNum = function (num) {
-        if (this.typeDecimal()) {
+        if (this.isTypeDecimal()) {
             if (num === '.')
                 return '0.';
             if (this.realMatch("" + num)) {
@@ -204,7 +204,7 @@ var InputSpinner = /** @class */ (function (_super) {
     };
     InputSpinner.prototype.getValue = function (num) {
         var value = num === undefined ? this.state.value : num;
-        if (this.typeDecimal()) {
+        if (this.isTypeDecimal()) {
             value = this.parseNum(value);
             if (typeof value == 'number') {
                 if (this.countDecimals(value) > this.props.precision)
@@ -239,7 +239,7 @@ var InputSpinner = /** @class */ (function (_super) {
     InputSpinner.prototype.getType = function () {
         return String(this.props.type).toLowerCase();
     };
-    InputSpinner.prototype.typeDecimal = function () {
+    InputSpinner.prototype.isTypeDecimal = function () {
         var type = this.getType();
         return (type === "float" ||
             type === "double" ||
@@ -276,15 +276,15 @@ var InputSpinner = /** @class */ (function (_super) {
     };
     InputSpinner.prototype.maxReached = function (num) {
         if (num === void 0) { num = null; }
-        if (num == null) {
-            num = this.state.value;
+        if (num === null) {
+            return this.state.value >= this.state.max;
         }
         return num >= this.state.max;
     };
     InputSpinner.prototype.minReached = function (num) {
         if (num === void 0) { num = null; }
         if (num == null) {
-            num = this.state.value;
+            return this.state.value <= this.state.min;
         }
         return num <= this.state.min;
     };

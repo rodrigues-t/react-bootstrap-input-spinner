@@ -1,4 +1,4 @@
-import React, { Component, memo } from "react";
+import React, { Component } from "react";
 import { Form, InputGroup, Button } from "react-bootstrap";
 
 /**
@@ -34,11 +34,11 @@ class InputSpinner extends Component<InputSpinnerProps, InputSpinnerState> {
 
 	getSpinnerStep(step: number): number {
 		let spinnerStep = this.parseNum(step);
-		if (!this.typeDecimal() && spinnerStep < 1) {
+		if (!this.isTypeDecimal() && spinnerStep < 1) {
 			spinnerStep = 1;
 		}
 		if (spinnerStep == '') {
-			if (this.typeDecimal()) {
+			if (this.isTypeDecimal()) {
 				spinnerStep = 0.1;
 			} else {
 				spinnerStep = 1;
@@ -67,7 +67,7 @@ class InputSpinner extends Component<InputSpinnerProps, InputSpinnerState> {
 		this.setState({ value: num });
 		let currentValue: any = this.getValue(num);
 
-		if (this.typeDecimal()) {
+		if (this.isTypeDecimal()) {
 			if (this.realMatch("" + currentValue)) {
 				if (this.state.min > 0 && Number(currentValue) === 0 && (event === 'none'))
 					return;
@@ -142,7 +142,7 @@ class InputSpinner extends Component<InputSpinnerProps, InputSpinnerState> {
 
 	onBlur(): void {
 		let currentValue = this.getValue(undefined);
-		if (this.typeDecimal()) {
+		if (this.isTypeDecimal()) {
 			if (this.realMatch("" + currentValue)) {
 				this.onChange(currentValue, 'blur');
 			} else {
@@ -161,7 +161,7 @@ class InputSpinner extends Component<InputSpinnerProps, InputSpinnerState> {
 	intMatch = (value: any) => value && value.match(/-?\d+/) && value.match(/-?\d+/)[0] === value.match(/-?\d+/).input;
 
 	parseNum(num: any) {
-		if (this.typeDecimal()) {
+		if (this.isTypeDecimal()) {
 			if (num === '.')
 				return '0.';
 			if (this.realMatch("" + num)) {
@@ -188,7 +188,7 @@ class InputSpinner extends Component<InputSpinnerProps, InputSpinnerState> {
 	getValue(num: any) {
 		let value = num === undefined ? this.state.value : num;
 
-		if (this.typeDecimal()) {
+		if (this.isTypeDecimal()) {
 			value = this.parseNum(value);
 			if (typeof value == 'number') {
 				if (this.countDecimals(value) > this.props.precision)
@@ -224,7 +224,7 @@ class InputSpinner extends Component<InputSpinnerProps, InputSpinnerState> {
 		return String(this.props.type).toLowerCase();
 	}
 
-	typeDecimal(): boolean {
+	isTypeDecimal(): boolean {
 		let type = this.getType();
 		return (
 			type === "float" ||
@@ -266,15 +266,15 @@ class InputSpinner extends Component<InputSpinnerProps, InputSpinnerState> {
 	}
 
 	maxReached(num: number | null = null): boolean {
-		if (num == null) {
-			num = this.state.value;
+		if (num === null) {
+			return this.state.value >= this.state.max
 		}
 		return num >= this.state.max;
 	}
 
 	minReached(num: number | null = null): boolean {
 		if (num == null) {
-			num = this.state.value;
+			return this.state.value <= this.state.min;
 		}
 		return num <= this.state.min;
 	}

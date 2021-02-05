@@ -26,7 +26,7 @@ declare class InputSpinner extends Component<InputSpinnerProps, InputSpinnerStat
     countDecimals(value: number): number;
     countDecimalsFromString(value: string): number;
     getType(): string;
-    typeDecimal(): boolean;
+    isTypeDecimal(): boolean;
     increase(): void;
     decrease(): void;
     maxReached(num?: number | null): boolean;
