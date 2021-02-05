@@ -13,7 +13,8 @@ class InputSpinner extends Component<InputSpinnerProps, InputSpinnerState> {
 		arrows: false,
 		min: 0,
 		max: Number.MAX_SAFE_INTEGER,
-		variant: 'primary'
+		variant: 'primary',
+		size: undefined,
 	};
 
 	constructor(props: InputSpinnerProps) {
@@ -47,15 +48,12 @@ class InputSpinner extends Component<InputSpinnerProps, InputSpinnerState> {
 	}
 
 	componentDidUpdate(prevProps: InputSpinnerProps) {
-		// Parse Min
 		if (this.props.min !== prevProps.min) {
 			this.setState({ min: this.parseNum(this.props.min) });
 		}
-		// Parse Max
 		if (this.props.max !== prevProps.max) {
 			this.setState({ max: this.parseNum(this.props.max) });
 		}
-		// Parse Step
 		if (this.props.step !== prevProps.step) {
 			let spinnerStep = this.getSpinnerStep(this.props.step);
 			this.setState({ step: spinnerStep });
@@ -64,7 +62,7 @@ class InputSpinner extends Component<InputSpinnerProps, InputSpinnerState> {
 
 	onChange(num: any, event: any) {
 		if (this.props.disabled) return;
-		if (event === undefined) event = 'none'
+		if (event === undefined || event === null) event = 'none'
 
 		this.setState({ value: num });
 		let currentValue: any = this.getValue(num);
@@ -73,7 +71,7 @@ class InputSpinner extends Component<InputSpinnerProps, InputSpinnerState> {
 			if (this.realMatch("" + currentValue)) {
 				if (this.state.min > 0 && Number(currentValue) === 0 && (event === 'none'))
 					return;
-				// Ex: min=2 -> se for digitado 2. será emitido 2 mas o input mantém o 2.
+				// Ex: min=2 -> if was typed '2.' it will be  emitted '2' but the input keepes '2.' as value
 				if (Number(currentValue) === this.state.min && (event === 'none')) {
 					if ((Number(currentValue) !== Number(this.state.lastEmittedValue)) && this.props.onChange) {
 						this.emitChange(Number(currentValue));
@@ -137,12 +135,12 @@ class InputSpinner extends Component<InputSpinnerProps, InputSpinnerState> {
 		}
 	}
 
-	emitChange(value: number) {
+	emitChange(value: number): void {
 		this.props.onChange(value);
 		this.setState({ lastEmittedValue: value });
 	}
 
-	onBlur() {
+	onBlur(): void {
 		let currentValue = this.getValue(undefined);
 		if (this.typeDecimal()) {
 			if (this.realMatch("" + currentValue)) {
@@ -235,11 +233,8 @@ class InputSpinner extends Component<InputSpinnerProps, InputSpinnerState> {
 			type === "real"
 		);
 	}
-
-	/**
-	 * Increase
-	 */
-	increase() {
+	
+	increase(): void {
 		if (this._isDisabledButtonRight()) return;
 		let num =
 			this.parseNum(this.state.value) + this.parseNum(this.state.step);
@@ -254,7 +249,7 @@ class InputSpinner extends Component<InputSpinnerProps, InputSpinnerState> {
 		this.onChange(num, 'inc');
 	}
 
-	decrease() {
+	decrease(): void {
 		if (this._isDisabledButtonLeft()) {
 			return;
 		}
@@ -282,20 +277,11 @@ class InputSpinner extends Component<InputSpinnerProps, InputSpinnerState> {
 		}
 		return num <= this.state.min;
 	}
-
-	/**
-	 * Is object empty
-	 * @param obj
-	 * @returns {boolean}
-	 */
-	isObjectEmpty(obj: any) {
-		return Object.entries(obj).length === 0 && obj.constructor === Object;
-	}
-
-	/**
-	 * Is text input editable
-	 * @returns {boolean|Boolean}
-	 */
+	
+	// isObjectEmpty(obj: any): boolean {
+	// 	return Object.entries(obj).length === 0 && obj.constructor === Object;
+	// }
+	
 	isEditable() {
 		return !this.props.disabled && this.props.editable;
 	}
@@ -351,7 +337,7 @@ class InputSpinner extends Component<InputSpinnerProps, InputSpinnerState> {
 
 	render() {
 		return (
-			<InputGroup>
+			<InputGroup size={this.props.size}>
 				<InputGroup.Prepend>
 					{this._renderLeftButton()}
 				</InputGroup.Prepend>
@@ -399,6 +385,7 @@ type InputSpinnerProps = {
 	editable?: boolean,
 	arrows?: boolean,
 	variant?: string,
+	size?: any,
 }
 
 export { InputSpinnerProps, InputSpinner };

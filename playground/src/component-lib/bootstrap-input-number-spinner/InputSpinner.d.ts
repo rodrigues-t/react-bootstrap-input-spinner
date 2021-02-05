@@ -11,6 +11,7 @@ declare class InputSpinner extends Component<InputSpinnerProps, InputSpinnerStat
         min: number;
         max: number;
         variant: string;
+        size: undefined;
     };
     constructor(props: InputSpinnerProps);
     getSpinnerStep(step: number): number;
@@ -26,23 +27,10 @@ declare class InputSpinner extends Component<InputSpinnerProps, InputSpinnerStat
     countDecimalsFromString(value: string): number;
     getType(): string;
     typeDecimal(): boolean;
-    /**
-     * Increase
-     */
     increase(): void;
     decrease(): void;
     maxReached(num?: number | null): boolean;
     minReached(num?: number | null): boolean;
-    /**
-     * Is object empty
-     * @param obj
-     * @returns {boolean}
-     */
-    isObjectEmpty(obj: any): boolean;
-    /**
-     * Is text input editable
-     * @returns {boolean|Boolean}
-     */
     isEditable(): boolean | undefined;
     _isDisabledButtonLeft(): boolean;
     _isDisabledButtonRight(): boolean;
@@ -78,5 +66,6 @@ declare type InputSpinnerProps = {
     editable?: boolean;
     arrows?: boolean;
     variant?: string;
+    size?: any;
 };
 export { InputSpinnerProps, InputSpinner };

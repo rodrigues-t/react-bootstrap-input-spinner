@@ -70,15 +70,12 @@ var InputSpinner = /** @class */ (function (_super) {
         return spinnerStep;
     };
     InputSpinner.prototype.componentDidUpdate = function (prevProps) {
-        // Parse Min
         if (this.props.min !== prevProps.min) {
             this.setState({ min: this.parseNum(this.props.min) });
         }
-        // Parse Max
         if (this.props.max !== prevProps.max) {
             this.setState({ max: this.parseNum(this.props.max) });
         }
-        // Parse Step
         if (this.props.step !== prevProps.step) {
             var spinnerStep = this.getSpinnerStep(this.props.step);
             this.setState({ step: spinnerStep });
@@ -87,7 +84,7 @@ var InputSpinner = /** @class */ (function (_super) {
     InputSpinner.prototype.onChange = function (num, event) {
         if (this.props.disabled)
             return;
-        if (event === undefined)
+        if (event === undefined || event === null)
             event = 'none';
         this.setState({ value: num });
         var currentValue = this.getValue(num);
@@ -95,7 +92,7 @@ var InputSpinner = /** @class */ (function (_super) {
             if (this.realMatch("" + currentValue)) {
                 if (this.state.min > 0 && Number(currentValue) === 0 && (event === 'none'))
                     return;
-                // Ex: min=2 -> se for digitado 2. será emitido 2 mas o input mantém o 2.
+                // Ex: min=2 -> if was typed '2.' it will be  emitted '2' but the input keepes '2.' as value
                 if (Number(currentValue) === this.state.min && (event === 'none')) {
                     if ((Number(currentValue) !== Number(this.state.lastEmittedValue)) && this.props.onChange) {
                         this.emitChange(Number(currentValue));
@@ -249,9 +246,6 @@ var InputSpinner = /** @class */ (function (_super) {
             type === "decimal" ||
             type === "real");
     };
-    /**
-     * Increase
-     */
     InputSpinner.prototype.increase = function () {
         if (this._isDisabledButtonRight())
             return;
@@ -293,18 +287,9 @@ var InputSpinner = /** @class */ (function (_super) {
         }
         return num <= this.state.min;
     };
-    /**
-     * Is object empty
-     * @param obj
-     * @returns {boolean}
-     */
-    InputSpinner.prototype.isObjectEmpty = function (obj) {
-        return Object.entries(obj).length === 0 && obj.constructor === Object;
-    };
-    /**
-     * Is text input editable
-     * @returns {boolean|Boolean}
-     */
+    // isObjectEmpty(obj: any): boolean {
+    // 	return Object.entries(obj).length === 0 && obj.constructor === Object;
+    // }
     InputSpinner.prototype.isEditable = function () {
         return !this.props.disabled && this.props.editable;
     };
@@ -336,7 +321,7 @@ var InputSpinner = /** @class */ (function (_super) {
     };
     InputSpinner.prototype.render = function () {
         var _this = this;
-        return (React.createElement(InputGroup, null,
+        return (React.createElement(InputGroup, { size: this.props.size },
             React.createElement(InputGroup.Prepend, null, this._renderLeftButton()),
             this.props.prepend,
             React.createElement(Form.Control, { value: this.getValue(undefined), readOnly: !this.isEditable(), onChange: function (event) { return _this.onChange(event.target.value, undefined); }, onBlur: this.onBlur.bind(this) }),
@@ -350,7 +335,8 @@ var InputSpinner = /** @class */ (function (_super) {
         arrows: false,
         min: 0,
         max: Number.MAX_SAFE_INTEGER,
-        variant: 'primary'
+        variant: 'primary',
+        size: undefined,
     };
     return InputSpinner;
 }(Component));

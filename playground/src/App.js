@@ -45,6 +45,7 @@ const App = () => {
               min={0}
               step={1}
               value={value2}
+              size="sm"
               onChange={setValue2Callback}
             />
           </Col>
@@ -66,6 +67,7 @@ const App = () => {
               variant={'secondary'}
               step={2}
               value={value3}
+              size="lg"
               onChange={setValue3Callback}
             />
           </Col>
