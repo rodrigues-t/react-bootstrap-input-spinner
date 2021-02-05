@@ -15,10 +15,16 @@ const App = () => {
   return (
     <div className="App">
       <Container className="mt-2">
-        <Row>
-          <Col>
+        <div className="mb-4">
+          <h4>
+            React Bootstrap Input Spinner
+          </h4>
+        </div>
+        <Row className="mb-3">
+          <Col sm={{span: 4, offset: 4}}>
             <InputSpinner
               type={'real'}
+              size="sm"
               precision={2}
               max={1.2}
               min={0}
@@ -28,16 +34,9 @@ const App = () => {
             />
           </Col>
         </Row>
-        <Row>
-          <Col>
-            Min: 0 - Max: 1.2 - Step 0.01 - precision: 2 - type: real
-          </Col>
-          <Col>
-            Valor: {value1}
-          </Col>
-        </Row>
-        <Row>
-          <Col>
+        
+        <Row className="mb-3">
+          <Col sm={{span: 4, offset: 4}}>
             <InputSpinner
               type={'int'}
               variant={'dark'}
@@ -45,23 +44,13 @@ const App = () => {
               min={0}
               step={1}
               value={value2}
-              size="sm"
               onChange={setValue2Callback}
             />
           </Col>
-          <Col>
-          </Col>
         </Row>
-        <Row>
-          <Col>
-            Min: 0 - Max: 10 - Step 1 - type: int
-          </Col>
-          <Col>
-            Valor: {value2}
-          </Col>
-        </Row>
-        <Row>
-          <Col>
+        
+        <Row className="mb-5">
+          <Col sm={{span: 4, offset: 4}}>
             <InputSpinner
               type={'int'}
               variant={'secondary'}
@@ -72,7 +61,22 @@ const App = () => {
               onChange={setValue3Callback}
             />
           </Col>
+        </Row>
+
+        <Row>
           <Col>
+            Min: 0 - Max: 1.2 - Step 0.01 - precision: 2 - type: real
+          </Col>
+          <Col>
+            Valor 1: {value1}
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            Min: 0 - Max: 10 - Step 1 - type: int
+          </Col>
+          <Col>
+            Valor 2: {value2}
           </Col>
         </Row>
         <Row>
@@ -80,7 +84,7 @@ const App = () => {
             Min:  - Max:  - Step 2 - type: int
           </Col>
           <Col>
-            Valor: {value3}
+            Valor 3: {value3}
           </Col>
         </Row>
       </Container>

@@ -1,3 +1,3 @@
-import {InputSpinner} from './bootstrap-input-number-spinner/InputSpinner';
+import {InputSpinner} from './react-bootstrap-input-spinner/InputSpinner';
 
 export default InputSpinner;

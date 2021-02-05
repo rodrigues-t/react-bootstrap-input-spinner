@@ -1,40 +1,83 @@
-# bootstrap-input-number-spinner
-An input number spinner based on Bootstrap.
+# react-bootstrap-input-spinner
+An input number spinner based on Bootstrap for React.
 
-his project is totally based on React Native Input Spinner from Marco Cesarato. Click [here](https://github.com/marcocesarato/react-native-input-spinner) to check out his Github. 
+<img src="images/example.png" width="100%"/>
 
-## About
-This project was initially made to meet the needs of my projects. This may change in the future, but if it suits you right now how it is, I feel glad to help a little bit. 
+Set min and max values, use increase and decrease buttons, type value direct int the input and set bootstrap element properties.
 
-## But what were your needs?
-1. Apply Bootstrap 
-2. Needed to use small decimal numbers, but there was a bug that prevented me from using it. (Bug already fixed by Marco Cesarato).
+This project is based on `React Native Input Spinner` by Marco Cesarato. Click [here](https://github.com/marcocesarato/react-native-input-spinner) to check out his Github. 
 
-It's possible there are some bugs once I probably didn't perform tests in all scenarios. If after my warnings you want to use it, I appreciate it and ask you to contribute with bug fixes and enhancements if you could.
+## Install
+```
+$ npm install bootstrap-input-number-spinner
+```
 
-By the way, I recommend you go to Marco Cesarato repository and check out his well maintained and great work. 
+## Usage
 
-## Getting Started
+```javascript
+import InputSpinner from './component-lib'  
+  
+<InputSpinner
+    type={'real'}
+    precision={2}
+    max={1.2}
+    min={0}
+    step={0.01}
+    value={value}
+    onChange={num=>console.log(num)}
+    variant={'dark'}
+    size="sm"
+/>
+```
+
+## Run example
 Make sure you have a recent version of Node.js installed in yout development environment.
 
 **Cloning Repository**
 ```
-$ git clone https://github.com/rodrigues-t/bootstrap-input-number-spinner.git
+$ git clone https://github.com/rodrigues-t/react-bootstrap-input-spinner.git
 ```
 
 **Installing all dependencies (library and playground)**
 ```
+$ cd react-bootstrap-input-spinner
+```
+And then  
+```
 $ npm run i-all
 ```
 
-**Runinng for test:**
+**Runinng for test**
 ```
 $ npm run dev
 ```
 
-## Built With
+## Props List
 
-1. React
-2. React-Bootstrap
-3. Typescript
-4. Rollup
+| Property     |Description                                                                                    |type     |Default                  |
+|--------------|-----------------------------------------------------------------------------------------------|---------|-------------------------|
+| `arrows`     | `Optional` Set if labels on right and left buttons will be `<` and `>` instead of `-` and `+` | boolean | false                   |
+| `disabled`   | `Optional` Set if component is disabled                                                       | boolean | false                   |
+| `editable`   | `Optional` Set if input number field is editable                                              | boolean | true                    |
+| `max`        | maximum value permitted                                                                       | number  | Number.MAX_SAFE_INTEGER |
+| `min`        | minimum value permitted                                                                       | number  | 0                       |
+| `precision`  | Maximum numbers after comma                                                                   | number  |                         |
+| `size`       | `Optional` Bootstrap element size. `sm` or `lg`                                               | any     | undefined               |
+| `step`       | Value to increment or decrement the spinner value                                             | number  |                         |
+| `type`       | Type of the spinner. `int` or `real`/`float`/`double`/`decimal`                               | string  |                         |
+| `value`      | Value of the spinner                                                                          | number  |                         |
+| `variant`    | `Optional` React Bootstrap variants                                                           | string  | primary                 |
+
+## Handlers
+
+| Handler      |Description |                     |
+|--------------|------------|---------------------|
+| `onChange`   |            | (num: number)=>void |
+| `onMax`      | `Optional` | (num: number)=>void |
+| `onMin`      | `Optional` | (num: number)=>void |
+| `onIncrease` | `Optional` | (num: number)=>void |
+| `onDecrease` | `Optional` | (num: number)=>void |
+
+## Contribute
+
+If you want to contribute with this project, please read [this](PROPS.md)
