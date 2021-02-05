@@ -80,4 +80,4 @@ $ npm run dev
 
 ## Contribute
 
-If you want to contribute with this project, please read [this](PROPS.md)
+If you want to contribute with this project, please read [this](DEV.md)
