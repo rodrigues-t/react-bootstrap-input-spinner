@@ -35,6 +35,16 @@ The command bellow will build and start the playgroud
 $ npm run dev
 ```
 
+**Publishing in Github Packages**
+```
+$ npm login --registry=https://npm.pkg.github.com
+```
+And then
+```
+$ npm publish
+```
+
+
 ## Built With
 
 1. React
