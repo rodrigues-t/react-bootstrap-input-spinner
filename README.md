@@ -1,7 +1,7 @@
 # react-bootstrap-input-spinner
 An input number spinner based on Bootstrap for React.
 
-<img src="images/example.png" width="30%"/>
+<img src="images/example.png" />
 
 Set min and max values, use increase and decrease buttons, type value direct int the input and set bootstrap element properties.
 
