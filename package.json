@@ -1,5 +1,5 @@
 {
-  "name": "@rodrigues-t/react-bootstrap-input-spinner",
+  "name": "react-bootstrap-input-spinner",
   "version": "1.0.0",
   "description": "An input number spinner based on Bootstrap.",
   "main": "dist/index.cjs.js",
@@ -7,7 +7,7 @@
   "files": ["dist"],
   "typings": "dist/index.d.ts",
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
     "build": "rollup -c",
