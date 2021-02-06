@@ -21,6 +21,17 @@
     "type": "git",
     "url": "git+https://github.com/rodrigues-t/react-bootstrap-input-spinner.git"
   },
+  "keywords": [
+    "react-component",
+    "react",
+    "reactjs",
+    "spinner",
+    "number",
+    "input",
+    "bootstrap",
+    "bootstrap-component",
+    "react-bootstrap"
+  ],
   "author": "Thiago Rodrigues",
   "license": "ISC",
   "bugs": {
