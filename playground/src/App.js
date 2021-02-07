@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import './App.css';
-import InputSpinner from './component-lib'
+//import InputSpinner from './component-lib';
+import InputSpinner from 'react-bootstrap-input-spinner';
 import { Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
