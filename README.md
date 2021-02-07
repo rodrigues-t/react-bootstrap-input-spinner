@@ -3,7 +3,7 @@ An input number spinner based on Bootstrap for React.
 
 <img src="images/example.png" />
 
-Set min and max values, use increase and decrease buttons, type value direct into the input, and set bootstrap element properties.
+Set min and max values, use increase and decrease buttons, type value directly into the input, and set bootstrap element properties.
 
 This project is based on `React Native Input Spinner` by Marco Cesarato. Click [here](https://github.com/marcocesarato/react-native-input-spinner) to check out his Github. 
 
@@ -80,4 +80,4 @@ $ npm run dev
 
 ## Contribute
 
-If you want to contribute with this project, please read [this](DEV.md)
+If you want to contribute to this project, please read [this](DEV.md).
