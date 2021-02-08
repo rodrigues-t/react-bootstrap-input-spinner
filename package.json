@@ -34,8 +34,8 @@
     "bootstrap-component",
     "react-bootstrap"
   ],
-  "author": "Thiago Rodrigues",
-  "license": "ISC",
+  "author": "Thiago Rodrigues <thiagonr86@gmail.com>",
+  "license": "GPL-3.0-or-later",
   "bugs": {
     "url": "https://github.com/rodrigues-t/react-bootstrap-input-spinner/issues"
   },
