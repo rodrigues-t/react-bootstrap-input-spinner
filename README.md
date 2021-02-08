@@ -66,13 +66,13 @@ $ npm run dev
 
 ## Handlers
 
-| Handler      |Description |                     |
-|--------------|------------|---------------------|
-| `onChange`   |            | (num: number)=>void |
-| `onMax`      | `Optional` | (num: number)=>void |
-| `onMin`      | `Optional` | (num: number)=>void |
-| `onIncrease` | `Optional` | (num: number)=>void |
-| `onDecrease` | `Optional` | (num: number)=>void |
+| Handler      |Description                                                |                     |
+|--------------|-----------------------------------------------------------|---------------------|
+| `onChange`   | Callback called when value changes                        | (num: number)=>void |
+| `onMax`      | `Optional` Callback called when max value is reached      | (num: number)=>void |
+| `onMin`      | `Optional` Callback called when min value is reached      | (num: number)=>void |
+| `onIncrease` | `Optional` Callback called when increase button is hitted | (num: number)=>void |
+| `onDecrease` | `Optional` Callback called when decrease button is hitted | (num: number)=>void |
 
 ## Contribute
 
