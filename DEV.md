@@ -17,6 +17,9 @@ It's possible there are some bugs once I probably didn't perform tests in all sc
 By the way, I recommend you go to [Marco Cesarato repository](https://github.com/marcocesarato/react-native-input-spinner) and check out his well maintained and great work. 
 
 ## Getting Started
+
+**You can clone and modify as you wish**  
+
 Make sure you have a recent version of Node.js installed in yout development environment.
 
 **Cloning Repository**
@@ -36,6 +39,10 @@ $ npm run dev
 ```
 
 **Publishing in Github Packages**
+
+There is a workflow in the Github Actions to automate this process. Check it out there to see how.
+
+**Publishing in Github Packages**
 ```
 $ npm login --registry=https://npm.pkg.github.com
 ```
@@ -43,7 +50,7 @@ And then
 ```
 $ npm publish
 ```
-
+Notice Github Packages need to be scoped. The name of the package need to be something like @<your_name>/react-bootstrap-input-spinner
 
 ## Built With
 

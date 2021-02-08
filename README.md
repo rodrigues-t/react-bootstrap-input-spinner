@@ -31,7 +31,7 @@ import InputSpinner from 'react-bootstrap-input-spinner'
 ```
 
 ## Run example
-Make sure you have a recent version of Node.js installed in yout development environment.
+Make sure you have a recent version of Node.js installed in your development environment.
 
 **Cloning Repository**
 ```
@@ -40,11 +40,7 @@ $ git clone https://github.com/rodrigues-t/react-bootstrap-input-spinner.git
 
 **Installing all dependencies (library and playground)**
 ```
-$ cd react-bootstrap-input-spinner
-```
-And then  
-```
-$ npm run i-all
+$ cd react-bootstrap-input-spinner && npm run i-all
 ```
 
 **Runinng for test**
