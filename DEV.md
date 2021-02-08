@@ -5,7 +5,7 @@ An input number spinner based on Bootstrap.
 
 This project is based on `React Native Input Spinner` from Marco Cesarato. Click [here](https://github.com/marcocesarato/react-native-input-spinner) to check out his Github. 
 
-This project was initially made to meet the needs of my projects. This may change in the future (it will), so if you want to contribute with the project, feel free to do it making pull requests. I truelly will apreciate it.
+This project was initially made to meet the needs of my projects. This may change in the future (it will), so if you want to contribute with the project, feel free to do it making pull requests. I truly will appreciate it.
 
 ## Why?
 In summary, I needed to:  
