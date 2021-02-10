@@ -331,7 +331,6 @@ class InputSpinner extends Component<InputSpinnerProps, InputSpinnerState> {
 				</InputGroup.Prepend>
 				{this.props.prepend}
 				<Form.Control
-					id="input-spinner-input"
 					value={this.getValue(undefined)}
 					readOnly={!this.isEditable()}
 					onChange={event => this.onChange(event.target.value, undefined)}
