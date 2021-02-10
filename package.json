@@ -1,6 +1,6 @@
 {
   "name": "react-bootstrap-input-spinner",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "An input number spinner based on Bootstrap.",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
