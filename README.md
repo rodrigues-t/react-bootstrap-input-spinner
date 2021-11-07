@@ -61,7 +61,7 @@ $ npm run dev
 | `size`       | `Optional` Bootstrap element size. `sm` or `lg`                                               | any     | undefined               |
 | `step`       | Value to increment or decrement the spinner value                                             | number  |                         |
 | `type`       | Type of the spinner. `int` or `real`/`float`/`double`/`decimal`                               | string  |                         |
-| `value`      | Value of the spinner                                                                          | number  |                         |
+| `value`      | Value to initialize the spinner                                                               | number  |                         |
 | `variant`    | `Optional` React Bootstrap variants                                                           | string  | primary                 |
 
 ## Handlers
