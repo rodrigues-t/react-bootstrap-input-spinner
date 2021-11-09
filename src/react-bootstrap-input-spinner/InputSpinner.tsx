@@ -304,6 +304,7 @@ class InputSpinner extends Component<InputSpinnerProps, InputSpinnerState> {
 			<Button
 				id="input-spinner-left-button"
 				variant={this.props.variant}
+				size={this.props.size}
 				disabled={this.isDisabledButtonLeft()}
 				onClick={() => this.decrease()}>
 				{this.renderLeftButtonElement()}
@@ -316,6 +317,7 @@ class InputSpinner extends Component<InputSpinnerProps, InputSpinnerState> {
 			<Button
 				id="input-spinner-right-button"
 				variant={this.props.variant}
+				size={this.props.size}
 				disabled={this.isDisabledButtonRight()}
 				onClick={() => this.increase()}>
 				{this.renderRightButtonElement()}
